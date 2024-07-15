@@ -1,0 +1,15 @@
+com/example/recipes/RecipeSharingApiApplication.class
+com/example/recipes/repository/RatingRepository.class
+com/example/recipes/controller/RatingController.class
+com/example/recipes/model/Recipe.class
+com/example/recipes/service/CustomUserDetailsService.class
+com/example/recipes/controller/RecipeController.class
+com/example/recipes/repository/RecipeRepository.class
+com/example/recipes/util/JwtTokenUtil.class
+com/example/recipes/controller/UserController.class
+com/example/recipes/security/SecurityConfig.class
+com/example/recipes/repository/UserRepository.class
+com/example/recipes/util/JwtRequestFilter.class
+com/example/recipes/model/Rating.class
+com/example/recipes/model/User.class
+com/example/recipes/util/JwtAuthenticationEntryPoint.class

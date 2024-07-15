@@ -1,0 +1,15 @@
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/RecipeSharingApiApplication.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/controller/RatingController.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/controller/RecipeController.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/controller/UserController.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/model/Rating.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/model/Recipe.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/model/User.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/repository/RatingRepository.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/repository/RecipeRepository.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/repository/UserRepository.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/security/SecurityConfig.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/service/CustomUserDetailsService.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/util/JwtAuthenticationEntryPoint.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/util/JwtRequestFilter.java
+/Users/renereyes/Documents/GitHub/recipe-sharing-api/src/main/java/com/example/recipes/util/JwtTokenUtil.java
