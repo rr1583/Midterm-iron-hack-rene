@@ -1,8 +1,9 @@
-Recipe Sharing API
+# Recipe Sharing API
 
-Description of the Project
+## Project Description
+A RESTful API for sharing and rating recipes built with Java and Spring Boot.
 
-This project is a Recipe Sharing API built with Spring Boot. It allows users to create, view, update, and delete recipes, as well as rate and review them. The API uses JWT for authentication and authorization.
+## Class Diagram
 
 Class Diagram
 
