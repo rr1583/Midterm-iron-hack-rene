@@ -9,29 +9,23 @@ Class Diagram
 
 ![Copy of UML IronHack Midterm copy](https://github.com/user-attachments/assets/e73b4a29-40a3-4a25-8e88-b7c6c22225d1)
 
-Setup
+## Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/rr1583/Midterm-iron-hack-rene.git
+   ```
+2. Navigate to the project directory:
+ ```bash
+  cd Midterm-iron-hack-rene
+ ```
 
-Prerequisites
-
-* Java 17
-  
-* MySQL
-  
-* Maven
-  
-Installation
-
-
-Clone the repository:
-
-
-Create a MySQL database:
- CREATE DATABASE recipe_db;
+3. Navigate to the project directory:
+```bash
+mvn spring-boot:run
+ ```
 
 
-
-Technologies Used
-
+## Technologies Used
 
 * Java 17
   
@@ -41,16 +35,16 @@ Technologies Used
   
 * Spring Security
   
-* JWT
-  
 * MySQL
   
 * Maven
+  
+* Hibernate 
 
   
-Controllers and Routes Structure
+## Controllers and Routes Structure
 
-User Controller
+### User Controller
 
 * GET /api/users: Get all users
   
@@ -63,7 +57,7 @@ User Controller
 * DELETE /api/users/{id}: Delete a user
 
   
-Recipe Controller
+### Recipe Controller
 
 * GET /recipes: Get all recipes
   
@@ -76,7 +70,7 @@ Recipe Controller
 * DELETE /recipes/{id}: Delete a recipe
 
   
-Rating Controller
+### Rating Controller
 
 * GET /ratings: Get all ratings
   
@@ -87,4 +81,19 @@ Rating Controller
 * PUT /ratings/{id}: Update a rating
   
 * DELETE /ratings/{id}: Delete a rating
+
+
+## Future Work
+
+* Implement DTOs for better data management
+* Add user authentication and authorization
+* Enhance error handling and validation
   
+## Resources
+Spring Boot 
+Hibernate 
+
+
+## Team Members
+René Reyes
+
