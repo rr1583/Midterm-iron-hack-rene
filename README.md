@@ -82,16 +82,14 @@ mvn spring-boot:run
   
 * DELETE /ratings/{id}: Delete a rating
 
-
 ## Future Work
 
 * Implement DTOs for better data management
 * Add user authentication and authorization
 * Enhance error handling and validation
   
-## Resources
-Spring Boot 
-Hibernate 
+## SlideShow
+https://docs.google.com/presentation/d/e/2PACX-1vT8EOEXxut9EhL_ovA_eV_ips84HcnJLeBh4B9gB5_2jL6n4eh0a5rXX8ktN-dH-x1QKPrLCULv9kt3/pub?start=false&loop=false&delayms=10000
 
 
 ## Team Members
