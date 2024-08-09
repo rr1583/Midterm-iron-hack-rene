@@ -1,20 +1,22 @@
-// src/components/UserList.js
-
-import React, { useState, useEffect } from 'react';
-import api from '../api';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    api.get('/users')
-      .then(response => setUsers(response.data))
-      .catch(error => console.error('Error fetching users:', error));
+    axios.get('/api/users')
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the users!', error);
+      });
   }, []);
 
   return (
     <div>
-      <h1>User List</h1>
+      <h2>User List</h2>
       <ul>
         {users.map(user => (
           <li key={user.id}>{user.name} - {user.email}</li>

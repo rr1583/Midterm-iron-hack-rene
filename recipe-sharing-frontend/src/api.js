@@ -1,8 +1,10 @@
-// src/App.js
+import axios from 'axios';
 
-import React from 'react';
-import AppRouter from './AppRouter';
+const api = axios.create({
+  baseURL: 'http://localhost:8080/api', // Ensure this is your backend URL
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
-const App = () => <AppRouter />;
-
-export default App;
+export default api;
