@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ratings")
+@CrossOrigin(origins = "http://localhost:3000")  // Added CORS configuration
 public class RatingController {
 
     @Autowired

@@ -25,7 +25,20 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public void deleteRecipe(Long id) {
-        recipeRepository.deleteById(id);
+    public Recipe updateRecipe(Long id, Recipe recipeDetails) {
+        return recipeRepository.findById(id).map(recipe -> {
+            recipe.setTitle(recipeDetails.getTitle());
+            recipe.setIngredients(recipeDetails.getIngredients());
+            recipe.setInstructions(recipeDetails.getInstructions());
+            recipe.setCategory(recipeDetails.getCategory());
+            return recipeRepository.save(recipe);
+        }).orElse(null);
+    }
+
+    public boolean deleteRecipe(Long id) {
+        return recipeRepository.findById(id).map(recipe -> {
+            recipeRepository.delete(recipe);
+            return true;
+        }).orElse(false);
     }
 }

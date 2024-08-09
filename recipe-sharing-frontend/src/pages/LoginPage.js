@@ -1,44 +1,42 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { TextField, Button, Container, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Container, TextField, Button, Typography, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+  const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/login', {
+      const response = await axios.post('http://localhost:8080/api/login', {
         email,
         password,
       });
-      if (response.data.success) {
-        localStorage.setItem('token', response.data.token); // Save the token in local storage
-        navigate('/'); // Redirect to homepage or dashboard after successful login
-      }
+      setMessage('Login successful!');
+      setError(null);
+      // If using a token-based system, save the token
+      // localStorage.setItem('token', response.data.token);
+      window.location.href = '/user-homepage'; // Redirect to the user homepage after login
     } catch (error) {
       setError('Login failed. Please check your credentials and try again.');
+      setMessage(null);
     }
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Typography variant="h4" gutterBottom>
         Login
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form noValidate autoComplete="off">
         <TextField
           label="Email"
-          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           fullWidth
-          required
           margin="normal"
         />
         <TextField
@@ -47,18 +45,17 @@ function LoginPage() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           fullWidth
-          required
           margin="normal"
         />
-        {error && (
-          <Typography color="error" gutterBottom>
-            {error}
-          </Typography>
-        )}
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        {error && <Typography color="error">{error}</Typography>}
+        {message && <Typography color="primary">{message}</Typography>}
+        <Button variant="contained" color="primary" onClick={handleLogin} style={{ marginTop: '20px' }}>
           Login
         </Button>
       </form>
+      <Typography style={{ marginTop: '20px' }}>
+        Don't have an account? <Link component={RouterLink} to="/register">Register here</Link>
+      </Typography>
     </Container>
   );
 }

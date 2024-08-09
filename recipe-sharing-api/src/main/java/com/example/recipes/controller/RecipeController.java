@@ -1,7 +1,7 @@
 package com.example.recipes.controller;
 
 import com.example.recipes.model.Recipe;
-import com.example.recipes.repository.RecipeRepository;
+import com.example.recipes.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,48 +10,49 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/recipes")
+@CrossOrigin(origins = "http://localhost:3000")  // Added CORS configuration
 public class RecipeController {
 
     @Autowired
-    private RecipeRepository recipeRepository;
+    private RecipeService recipeService;
 
     @GetMapping
     public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
+        return recipeService.getAllRecipes();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Recipe> getRecipeById(@PathVariable Long id) {
-        return recipeRepository.findById(id)
-                .map(recipe -> ResponseEntity.ok().body(recipe))
-                .orElse(ResponseEntity.notFound().build());
+        Recipe recipe = recipeService.getRecipeById(id);
+        if (recipe != null) {
+            return ResponseEntity.ok(recipe);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
     public Recipe createRecipe(@RequestBody Recipe recipe) {
-        return recipeRepository.save(recipe);
+        return recipeService.saveRecipe(recipe);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @RequestBody Recipe recipeDetails) {
-        return recipeRepository.findById(id)
-                .map(recipe -> {
-                    recipe.setTitle(recipeDetails.getTitle());
-                    recipe.setIngredients(recipeDetails.getIngredients());
-                    recipe.setInstructions(recipeDetails.getInstructions());
-                    recipe.setCategory(recipeDetails.getCategory());
-                    return ResponseEntity.ok().body(recipeRepository.save(recipe));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        Recipe updatedRecipe = recipeService.updateRecipe(id, recipeDetails);
+        if (updatedRecipe != null) {
+            return ResponseEntity.ok(updatedRecipe);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRecipe(@PathVariable Long id) {
-        return recipeRepository.findById(id)
-                .map(recipe -> {
-                    recipeRepository.delete(recipe);
-                    return ResponseEntity.ok().<Void>build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+        boolean isDeleted = recipeService.deleteRecipe(id);
+        if (isDeleted) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

@@ -6,8 +6,17 @@ import UsersPage from './pages/UsersPage';
 import RecipesPage from './pages/RecipePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import UserHomepage from './pages/UserHomepage';
+import PostRecipePage from './pages/PostRecipePage'; // Import the Post Recipe Page
 
 function App() {
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
   return (
     <Router>
       <AppBar position="static" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -15,11 +24,20 @@ function App() {
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             Recipe Sharing App
           </Typography>
-          <Button color="inherit" component={Link} to="/">Home</Button>
-          <Button color="inherit" component={Link} to="/users">Users</Button>
-          <Button color="inherit" component={Link} to="/recipes">Recipes</Button>
-          <Button color="inherit" component={Link} to="/register">Register</Button>
-          <Button color="inherit" component={Link} to="/login">Login</Button>
+          {isLoggedIn ? (
+            <>
+              <Button color="inherit" component={Link} to="/user-homepage">Home</Button>
+              <Button color="inherit" component={Link} to="/post-recipe">Post Recipe</Button>
+              <Button color="inherit" component={Link} to="/recipes">Recipes</Button>
+              <Button color="inherit" onClick={handleLogout}>Log Out</Button>
+            </>
+          ) : (
+            <>
+              <Button color="inherit" component={Link} to="/">Home</Button>
+              <Button color="inherit" component={Link} to="/register">Register</Button>
+              <Button color="inherit" component={Link} to="/login">Login</Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
       <Container>
@@ -30,6 +48,8 @@ function App() {
             <Route path="/recipes" element={<RecipesPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/user-homepage" element={<UserHomepage />} />
+            <Route path="/post-recipe" element={<PostRecipePage />} /> {/* Post Recipe Page Route */}
           </Routes>
         </Grid>
       </Container>

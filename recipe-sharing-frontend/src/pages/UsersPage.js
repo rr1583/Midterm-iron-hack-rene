@@ -1,64 +1,50 @@
-import React, { useState } from 'react';
-import { TextField, Button, Typography, Grid, Paper } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Container, Typography, Card, CardContent, Grid } from '@mui/material';
 
 function UsersPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [users, setUsers] = useState([]);
 
-  const handleSubmit = () => {
-    // Add the logic to submit user data to the API
-    console.log('User Added:', { name, email, password });
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('/api/users');
+      console.log('Users:', response.data); // Log the response to verify the data
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
 
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   return (
-    <Paper style={{ padding: '20px' }}>
+    <Container>
       <Typography variant="h4" gutterBottom>
         Users
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        Add User
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField
-            label="Name"
-            variant="outlined"
-            fullWidth
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+      {users.length > 0 ? (
+        <Grid container spacing={3}>
+          {users.map((user) => (
+            <Grid item xs={12} sm={6} md={4} key={user.id}>
+              <Card>
+                <CardContent>
+                  <Typography variant="h5" component="div">
+                    {user.name}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Email: {user.email}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Email"
-            variant="outlined"
-            fullWidth
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Password"
-            type="password"
-            variant="outlined"
-            fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Add User
-          </Button>
-        </Grid>
-      </Grid>
-      <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
-        User List
-      </Typography>
-      {/* Add user list rendering here */}
-    </Paper>
+      ) : (
+        <Typography variant="h6">No users found</Typography>
+      )}
+    </Container>
   );
 }
 
